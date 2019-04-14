@@ -95,11 +95,11 @@ class Distribution extends DataObject implements DistributionServiceInterface
     public function getFilesystemByDistributionId($distributionId)
     {
         try {
-            $distribution = $this->_distributionRepository->getById($distributionId);
+            $model = $this->_distributionRepository->getById($distributionId);
 
             return $this->getFilesystem(
-                $distribution->getAdapter(),
-                $distribution->getOptions()
+                $model->getAdapter(),
+                $model->getOptions()[ $model->getAdapter() ] ?? []
             );
         } catch (\Exception $e) {
             $this->_logger->addError($e);
