@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">distribution_form.distribution_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <label />
+        <buttons>
+            <button name="save" class="FjodorMaller\Distribution\Block\Adminhtml\Distribution\Edit\Button\SaveButton" />
+            <button name="delete" class="FjodorMaller\Distribution\Block\Adminhtml\Distribution\Edit\Button\DeleteButton" />
+            <button name="back" class="FjodorMaller\Base\Block\Adminhtml\Form\Button\BackButton" />
+        </buttons>
+        <namespace>distribution_form</namespace>
+        <dataScope>data.distribution</dataScope>
+        <deps>
+            <dep>distribution_form.distribution_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="distribution_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <validateUrl path="distribution/index/validate" />
+            <submitUrl path="distribution/index/save" />
+        </settings>
+        <dataProvider class="FjodorMaller\Distribution\Ui\DataProvider\Distribution\Form\DataProvider" name="distribution_form_data_source">
+            <settings>
+                <requestFieldName>distribution_id</requestFieldName>
+                <primaryFieldName>distribution_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" class="FjodorMaller\Distribution\Ui\Component\Form\Fieldset" sortOrder="10">
+        <settings>
+            <label />
+            <collapsible>false</collapsible>
+        </settings>
+        <container name="messages" component="Magento_Catalog/js/components/messages">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" />
+                </item>
+            </argument>
+        </container>
+        <field name="distribution_id" formElement="input" sortOrder="5">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">distribution</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>distribution_id</dataScope>
+            </settings>
+        </field>
+        <field name="name" formElement="input" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">distribution</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="is_active" sortOrder="20" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">distribution</item>
+                    <item name="default" xsi:type="string">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Is Active</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="adapter" sortOrder="30" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">distribution</item>
+                    <item name="value" xsi:type="string">local</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Adapter</label>
+                <dataScope>adapter</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="FjodorMaller\Distribution\Ui\Component\Form\Distribution\Adapter\Options" />
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="check_adapter" class="FjodorMaller\Distribution\Ui\Component\Form\Distribution\Button\CheckAdapterButton" component="FjodorMaller_Distribution/js/form/component/check-adapter-button" template="FjodorMaller_Distribution/form/check-button" formElement="button">
+            <settings>
+                <notice translate="true">Check entered settings for adapter.</notice>
+                <dataScope>check_adapter</dataScope>
+            </settings>
+            <formElements>
+                <button>
+                    <settings>
+                        <title translate="true">Check Adapter</title>
+                    </settings>
+                </button>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

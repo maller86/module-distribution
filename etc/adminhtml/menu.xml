@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="FjodorMaller_Distribution::distributions" title="Distributions" translate="title" module="FjodorMaller_Distribution" sortOrder="0409" parent="FjodorMaller_Base::system" action="distribution/index/" resource="FjodorMaller_Distribution::distributions" />
+    </menu>
+</config>

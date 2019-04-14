@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">distribution_grid_listing.distribution_grid_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new" />
+                <class>primary</class>
+                <label translate="true">Add New Distribution</label>
+            </button>
+        </buttons>
+        <spinner>distribution_columns</spinner>
+        <deps>
+            <dep>distribution_grid_listing.distribution_grid_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="distribution_grid_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">distribution_id</param>
+                <param name="indexField" xsi:type="string">distribution_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render" />
+            <dataScope>data</dataScope>
+        </settings>
+        <aclResource>FjodorMaller_Distribution::distributions</aclResource>
+        <dataProvider class="FjodorMaller\Distribution\Ui\DataProvider\Distribution\Grid\DataProvider" name="distribution_grid_listing_data_source">
+            <settings>
+                <requestFieldName>distribution_id</requestFieldName>
+                <primaryFieldName>distribution_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks" />
+        <columnsControls name="columns_controls" />
+        <exportButton class="FjodorMaller\Distribution\Ui\Component\Listing\Distribution\Export" />
+        <filterSearch name="fulltext" />
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <massaction name="listing_massaction">
+            <action name="check">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to check selected items? This will may take a minute.</message>
+                        <title translate="true">Check items</title>
+                    </confirm>
+                    <url path="distribution/index/massCheck" />
+                    <type>check</type>
+                    <label translate="true">Check</label>
+                </settings>
+            </action>
+            <action name="disable">
+                <settings>
+                    <url path="distribution/index/massDisable" />
+                    <type>disable</type>
+                    <label translate="true">Disable</label>
+                </settings>
+            </action>
+            <action name="enable">
+                <settings>
+                    <url path="distribution/index/massEnable" />
+                    <type>enable</type>
+                    <label translate="true">Enable</label>
+                </settings>
+            </action>
+            <action name="edit">
+                <settings>
+                    <callback>
+                        <target>editSelected</target>
+                        <provider>distribution_grid_listing.distribution_grid_listing.distribution_columns_editor</provider>
+                    </callback>
+                    <type>edit</type>
+                    <label translate="true">Edit</label>
+                </settings>
+            </action>
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="distribution/index/massDelete" />
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging" />
+    </listingToolbar>
+    <columns name="distribution_columns">
+        <settings>
+            <editorConfig>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="distribution/index/inlineEdit" />
+                    <item name="validateUrl" xsi:type="url" path="distribution/index/validate" />
+                    <item name="validateBeforeSave" xsi:type="boolean">true</item>
+                </param>
+                <param name="indexField" xsi:type="string">distribution_id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">distribution_grid_listing.distribution_grid_listing.distribution_columns.ids</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">distribution_grid_listing.distribution_grid_listing.distribution_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids" sortOrder="10">
+            <settings>
+                <indexField>distribution_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+            </settings>
+        </selectionsColumn>
+        <column name="distribution_id" sortOrder="20">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Id</label>
+            </settings>
+        </column>
+        <column name="name" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+        <column name="adapter" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
+            <settings>
+                <options class="FjodorMaller\Distribution\Model\System\Config\Source\Distribution\Adapter" />
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Adapter</label>
+            </settings>
+        </column>
+        <column name="health" class="FjodorMaller\Distribution\Ui\Component\Listing\Distribution\Column\Health" sortOrder="50">
+            <argument name="options" xsi:type="object">FjodorMaller\Distribution\Model\System\Config\Source\Distribution\Health</argument>
+            <settings>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <label translate="true">Health</label>
+                <resizeEnabled>true</resizeEnabled>
+                <resizeDefaultWidth>80</resizeDefaultWidth>
+            </settings>
+        </column>
+        <column name="is_active" component="Magento_Ui/js/grid/columns/select" sortOrder="60">
+            <settings>
+                <options class="FjodorMaller\Base\Model\System\Config\Source\Status" />
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <label translate="true">Is Active</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="FjodorMaller\Distribution\Ui\Component\Listing\Distribution\Column\Actions" sortOrder="100">
+            <settings>
+                <indexField>distribution_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

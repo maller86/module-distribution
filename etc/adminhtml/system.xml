@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="fjodormaller_distribution" translate="label" type="text" sortOrder="0605" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Distributions</label>
+            <tab>fjodormaller</tab>
+            <resource>FjodorMaller_Distribution::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>FjodorMaller\Base\Model\System\Config\Source\Yesno</source_model>
+                </field>
+                <field id="dead_interval" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Dead Interval</label>
+                    <validate>validate-zero-or-greater</validate>
+                    <comment>Define the interval in seconds of distribution to be counted as dead in check. Default: 86400</comment>
+                </field>
+            </group>
+            <group id="cron" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Cron</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>FjodorMaller\Base\Model\System\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cron_expr" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cron Expression</label>
+                    <validate>validate-cron-expression</validate>
+                    <comment>Enter a specific cron tab expression. Default: 0 * * * *</comment>
+                </field>
+                <field id="check_active_only" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Check Active Only</label>
+                    <source_model>FjodorMaller\Base\Model\System\Config\Source\Yesno</source_model>
+                    <comment>Choose yes to check only enabled distributions.</comment>
+                </field>
+            </group>
+        </section>
+        <section id="fjodormaller_logging">
+            <group id="fjodormaller_distribution" translate="label" type="text" sortOrder="0605" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Distribution</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>FjodorMaller\Base\Model\System\Config\Source\Yesno</source_model>
+                </field>
+                <!--<field id="location" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Location</label>
+                    <validate>required-entry</validate>
+                    <comment>Default: /var/log/fjodormaller/</comment>
+                </field>-->
+                <field id="filename" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Filename</label>
+                    <validate>required-entry</validate>
+                    <comment>File name where all log messages should be written in. Automatically applies ".log" extension if not given.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

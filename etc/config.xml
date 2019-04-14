@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <fjodormaller_distribution>
+            <general>
+                <enabled>1</enabled>
+                <dead_interval>86400</dead_interval>
+            </general>
+            <cron>
+                <enabled>1</enabled>
+                <check_active_only>0</check_active_only>
+                <cron_expr>0 * * * *</cron_expr>
+            </cron>
+        </fjodormaller_distribution>
+        <fjodormaller_logging>
+            <fjodormaller_distribution>
+                <enabled>0</enabled>
+                <location>var/log/fjodormaller</location>
+                <filename>distribution.log</filename>
+            </fjodormaller_distribution>
+        </fjodormaller_logging>
+    </default>
+</config>
