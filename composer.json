@@ -7,7 +7,7 @@
     "authors": [
         {
             "name": "Fjodor Maller",
-            "homepage": "https://github.com/sinus86"
+            "homepage": "https://github.com/maller86"
         }
     ],
     "require": {
@@ -29,6 +29,5 @@
         "psr-4": {
             "FjodorMaller\\Distribution\\": "/"
         }
-    },
-    "version": "1.0.0"
+    }
 }
