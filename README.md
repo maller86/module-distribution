@@ -40,7 +40,7 @@ So you will be able to use the distributions to copy, delete, move or rename fil
 
 ### Composer
 
-1) Run command `require fjodormaller/module-distribution` to add requirement to your composer.json file.
+1) Run command `require maller86/module-distribution` to add requirement to your composer.json file.
 2) Run command `php bin/magento setup:upgrade` to upgrade the database.
 3) Run command `php bin/magento setup:di:compile` to generate classes on your instance.
 
@@ -64,7 +64,7 @@ Go To **System > Fjodor Maller Modules > Distributions**
 
 This module can be used by end users for managing the distributions only. Further processing should be done by a Magento 2 developer.
 
-To use a distribution you should use Dependency Injection to inject the interface `FjodorMaller\Distribution\Api\DistricutionServiceInterface` to your model. Within this interface you have the method `getFilesystemByDistributionId($distributionId)` with the distribution id as the only parameter.
+To use a distribution you should use Dependency Injection to inject the interface `FjodorMaller\Distribution\Api\DistributionServiceInterface` to your model. Within this interface you have the method `getFilesystemByDistributionId($distributionId)` with the distribution id as the only parameter.
 
 When the given distribution id was found, it will return an instance implementing `League\Flysystem\FilesystemInterface` that is ready to use with the mentioned operations above.  
 
