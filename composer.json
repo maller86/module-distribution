@@ -1,5 +1,5 @@
 {
-    "name": "fjodormaller/module-distribution",
+    "name": "maller86/module-distribution",
     "type": "magento2-module",
     "keywords": ["magento2", "module", "distribution", "flysystem", "destination"],
     "description": "Your distribution manager for Magento 2.",
